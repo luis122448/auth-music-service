@@ -16,8 +16,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import pe.bbg.music.auth.dto.ApiResponse;
 
-import java.time.LocalDateTime;
-
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
