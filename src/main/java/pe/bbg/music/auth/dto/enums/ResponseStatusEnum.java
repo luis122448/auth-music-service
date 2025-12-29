@@ -1,4 +1,4 @@
-package pe.bbg.music.auth.dto;
+package pe.bbg.music.auth.dto.enums;
 
 public enum ResponseStatusEnum {
     SUCCESS,

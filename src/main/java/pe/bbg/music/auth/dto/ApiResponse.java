@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pe.bbg.music.auth.dto.enums.ResponseStatusEnum;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

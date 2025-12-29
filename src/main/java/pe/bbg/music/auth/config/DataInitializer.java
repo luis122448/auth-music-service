@@ -5,9 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import pe.bbg.music.auth.entity.SubscriptionTierEnum;
+import pe.bbg.music.auth.entity.enums.SubscriptionTierEnum;
 import pe.bbg.music.auth.entity.UserEntity;
-import pe.bbg.music.auth.entity.UserRoleEnum;
+import pe.bbg.music.auth.entity.enums.UserRoleEnum;
 import pe.bbg.music.auth.repository.UserRepository;
 
 @Component

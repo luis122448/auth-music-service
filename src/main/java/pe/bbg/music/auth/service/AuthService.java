@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.bbg.music.auth.dto.*;
-import pe.bbg.music.auth.entity.SubscriptionTierEnum;
+import pe.bbg.music.auth.entity.enums.SubscriptionTierEnum;
 import pe.bbg.music.auth.entity.UserEntity;
 import pe.bbg.music.auth.repository.UserRepository;
 

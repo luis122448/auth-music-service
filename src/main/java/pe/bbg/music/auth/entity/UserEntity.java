@@ -13,6 +13,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pe.bbg.music.auth.entity.enums.SubscriptionTierEnum;
+import pe.bbg.music.auth.entity.enums.UserRoleEnum;
 
 import java.time.LocalDateTime;
 import java.util.Collection;

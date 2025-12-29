@@ -19,7 +19,19 @@ The following libraries are standardized across all services:
 - **Monitoring**: Spring Boot Actuator.
 
 ## 3. Architecture: Layered Pattern
-All microservices follow a consistent layered architecture to ensure separation of concerns:
+All microservices follow a consistent layered architecture to ensure separation of concerns.
+
+### 3.1. Package Structure
+The following package hierarchy is mandatory for all services:
+- `pe.bbg.music.[service].config`: Global configurations (Security, JPA, OpenAPI, Data Initializers).
+- `pe.bbg.music.[service].controller`: REST controllers handling HTTP entry points.
+- `pe.bbg.music.[service].service`: Business logic interfaces and implementations.
+- `pe.bbg.music.[service].repository`: Spring Data JPA interfaces for database access.
+- `pe.bbg.music.[service].entity`: JPA entities (ending in `Entity`). Enums used as entity fields must be in `pe.bbg.music.[service].entity.enums`.
+- `pe.bbg.music.[service].dto`: Data Transfer Objects for API requests and responses. Enums used in DTOs must be in `pe.bbg.music.[service].dto.enums`.
+- `pe.bbg.music.[service].exception`: Global exception handlers and custom exception classes.
+
+### 3.2. Layer Responsibilities
 - **Controller Layer**: Handles HTTP requests, input validation, and maps DTOs.
 - **Service Layer**: Contains business logic and orchestrates calls between repositories and other services.
 - **Repository Layer**: Interfaces with the database using Spring Data JPA.
