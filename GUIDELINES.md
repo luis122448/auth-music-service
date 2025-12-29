@@ -2,7 +2,23 @@
 
 This document outlines the mandatory technical standards and best practices for all microservices in the Music Platform project.
 
-## 1. Architecture: Layered Pattern
+## 1. Standard Tech Stack
+To ensure compatibility and maintainability across the platform, all microservices must use the following versions:
+- **Java**: 21 (LTS)
+- **Spring Boot**: 4.0.1
+- **Spring Cloud**: 2025.1.0 (Enterprise/Microservices support)
+- **Build Tool**: Maven 3.9+
+
+## 2. Common Dependencies
+The following libraries are standardized across all services:
+- **Persistence**: Spring Data JPA with PostgreSQL.
+- **Security**: Spring Security 7+ with JWT.
+- **JWT Handling**: `io.jsonwebtoken:jjwt` version `0.13.0`.
+- **Documentation**: `springdoc-openapi` version `3.0.0` (Swagger UI).
+- **Utilities**: Lombok (latest), Caffeine (for caching).
+- **Monitoring**: Spring Boot Actuator.
+
+## 3. Architecture: Layered Pattern
 All microservices follow a consistent layered architecture to ensure separation of concerns:
 - **Controller Layer**: Handles HTTP requests, input validation, and maps DTOs.
 - **Service Layer**: Contains business logic and orchestrates calls between repositories and other services.
@@ -29,16 +45,36 @@ All main entities must implement auditing to track record lifecycle. The standar
 Use Spring Data JPA `@CreatedBy`, `@CreatedDate`, `@LastModifiedBy`, and `@LastModifiedDate` annotations.
 
 ## 4. API Response Standard (`ApiResponse<T>`)
-All endpoints must return a consistent JSON structure using the `ApiResponse` wrapper.
+All endpoints must return a consistent JSON structure. This class uses Jackson `@JsonInclude(JsonInclude.Include.NON_NULL)` to omit null fields from the final response.
 
+### 4.1. Response Attributes
+- `status`: (`ResponseStatusEnum`) Categorizes the result of the operation.
+- `message`: (`String`) User-friendly description of the result (in English).
+- `data`: (`T`) The payload of the response (can be an object, a list, or null).
+- `logUser`: (`String`) The username or "ANONYMOUS" associated with the action.
+- `logMessage`: (`String`) Technical detail or exception trace for debugging (internal use).
+- `logDate`: (`LocalDateTime`) ISO-8601 timestamp of when the response was generated.
+
+### 4.2. Status Enum (`ResponseStatusEnum`)
+- `SUCCESS`: Operation completed successfully.
+- `ERROR`: A failure occurred (validation, security, or internal server error).
+- `WARNING`: Operation completed but with caveats or minor issues.
+- `INFO`: Neutral informational message.
+
+### 4.3. Standard Factory Methods
+Developers should use these static methods instead of the builder or constructors to ensure consistency:
+
+- `ApiResponse.success(T data, String message)`: Standard success response with data.
+- `ApiResponse.error(String message, String logMessage, String logUser)`: Error response with technical context.
+- `ApiResponse.warning(String message)`: Simple warning response.
+
+### 4.4. Example JSON Structure
 ```json
 {
-  "status": "SUCCESS | ERROR | WARNING | INFO",
-  "message": "User-friendly message in English",
-  "data": { ... } | [ ... ] | null,
-  "logUser": "Username or ANONYMOUS",
-  "logMessage": "Technical detail for debugging",
-  "logDate": "ISO-8601 Timestamp"
+  "status": "SUCCESS",
+  "message": "User details retrieved successfully",
+  "data": { "id": "uuid", "username": "admin" },
+  "logDate": "2025-12-28T20:00:00"
 }
 ```
 
