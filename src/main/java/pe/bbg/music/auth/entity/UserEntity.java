@@ -26,7 +26,7 @@ import java.util.UUID;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "tbl_user")
-public class User implements UserDetails {
+public class UserEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -37,14 +37,14 @@ public class User implements UserDetails {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    private UserRole role;
+    private UserRoleEnum role;
 
     // Business fields
     private String avatarUrl;
     private String country;
 
     @Enumerated(EnumType.STRING)
-    private SubscriptionTier subscriptionTier;
+    private SubscriptionTierEnum subscriptionTier;
 
     // Audit fields
     @CreatedBy

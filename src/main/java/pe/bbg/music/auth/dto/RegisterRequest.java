@@ -4,16 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pe.bbg.music.auth.entity.UserRole;
+import pe.bbg.music.auth.entity.UserRoleEnum;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class RegisterRequest {
+
     private String username;
     private String password;
     private String email;
-    private UserRole role; 
+    private UserRoleEnum role; 
     private String country;
 }

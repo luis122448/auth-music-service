@@ -16,7 +16,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ApiResponse<T> {
 
-    private ResponseStatus status; // Now using restricted ENUM
+    private ResponseStatusEnum status; // Now using restricted ENUM
     private String message;
     private T data;
 
@@ -31,7 +31,7 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> success(T data, String message) {
         return ApiResponse.<T>builder()
-                .status(ResponseStatus.SUCCESS)
+                .status(ResponseStatusEnum.SUCCESS)
                 .message(message)
                 .data(data)
                 .logDate(LocalDateTime.now())
@@ -40,7 +40,7 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> error(String message, String logMessage, String logUser) {
         return ApiResponse.<T>builder()
-                .status(ResponseStatus.ERROR)
+                .status(ResponseStatusEnum.ERROR)
                 .message(message)
                 .logMessage(logMessage)
                 .logUser(logUser)
@@ -50,7 +50,7 @@ public class ApiResponse<T> {
 
     public static <T> ApiResponse<T> warning(String message) {
         return ApiResponse.<T>builder()
-                .status(ResponseStatus.WARNING)
+                .status(ResponseStatusEnum.WARNING)
                 .message(message)
                 .logDate(LocalDateTime.now())
                 .build();

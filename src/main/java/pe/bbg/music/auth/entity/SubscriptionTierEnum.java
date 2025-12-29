@@ -1,6 +1,6 @@
 package pe.bbg.music.auth.entity;
 
-public enum SubscriptionTier {
+public enum SubscriptionTierEnum {
     FREE,
     PREMIUM
 }

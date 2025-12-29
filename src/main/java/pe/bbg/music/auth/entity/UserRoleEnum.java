@@ -1,6 +1,6 @@
 package pe.bbg.music.auth.entity;
 
-public enum UserRole {
+public enum UserRoleEnum {
     USER,
     ADMIN
 }

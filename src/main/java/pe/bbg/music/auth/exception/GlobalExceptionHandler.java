@@ -61,9 +61,9 @@ public class GlobalExceptionHandler {
         String technicalMessage = ex.getMessage();
         String userMessage = "Invalid input format or invalid value for fields (e.g., Role, SubscriptionTier).";
 
-        if (technicalMessage != null && technicalMessage.contains("UserRole")) {
+        if (technicalMessage != null && technicalMessage.contains("UserRoleEnum")) {
             userMessage = "Invalid role provided. Accepted values are: [USER, ADMIN]";
-        } else if (technicalMessage != null && technicalMessage.contains("SubscriptionTier")) {
+        } else if (technicalMessage != null && technicalMessage.contains("SubscriptionTierEnum")) {
             userMessage = "Invalid subscription tier provided. Accepted values are: [FREE, PREMIUM]";
         }
 

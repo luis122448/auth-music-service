@@ -5,7 +5,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import pe.bbg.music.auth.entity.User;
+import pe.bbg.music.auth.entity.SubscriptionTierEnum;
+import pe.bbg.music.auth.entity.UserEntity;
+import pe.bbg.music.auth.entity.UserRoleEnum;
 import pe.bbg.music.auth.repository.UserRepository;
 
 @Component
@@ -23,13 +25,13 @@ public class DataInitializer implements CommandLineRunner {
         if (userRepository.findByUsername(adminUsername).isEmpty()) {
             log.info("Admin user not found. Creating default admin user...");
             
-            User admin = User.builder()
+            UserEntity admin = UserEntity.builder()
                     .username(adminUsername)
                     .password(passwordEncoder.encode("admin")) // Default password
                     .email("admin@bbg.pe")
-                    .role(pe.bbg.music.auth.entity.UserRole.ADMIN)
+                    .role(UserRoleEnum.ADMIN)
                     .country("PE")
-                    .subscriptionTier(pe.bbg.music.auth.entity.SubscriptionTier.PREMIUM)
+                    .subscriptionTier(SubscriptionTierEnum.PREMIUM)
                     .avatarUrl("https://ui-avatars.com/api/?name=Admin")
                     .build();
             

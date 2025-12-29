@@ -4,8 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pe.bbg.music.auth.entity.SubscriptionTier;
-import pe.bbg.music.auth.entity.UserRole;
+import pe.bbg.music.auth.entity.SubscriptionTierEnum;
+import pe.bbg.music.auth.entity.UserRoleEnum;
 
 import java.util.UUID;
 
@@ -17,8 +17,8 @@ public class UserResponse {
     private UUID id;
     private String username;
     private String email;
-    private UserRole role;
+    private UserRoleEnum role;
     private String avatarUrl;
     private String country;
-    private SubscriptionTier subscriptionTier;
+    private SubscriptionTierEnum subscriptionTier;
 }
